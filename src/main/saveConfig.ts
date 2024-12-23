@@ -14,6 +14,8 @@ import {
   writeKeymapViaSerial,
   writePogConfViaSerial
 } from './index'
+
+
 // save code.py based on pog.json
 
 export const saveConfiguration = (data: string) => {
@@ -30,7 +32,21 @@ export const saveConfiguration = (data: string) => {
     })
 
     saveKeyboardConfig(pogConfig, writeFirmware) // initialize files if they don't exist
+    //console.log(pogConfig)
+    //console.log(pogConfig.name)
+    saveDeviceName(pogConfig.name)
   }
+}
+
+export const saveDeviceName = (keyboardName) => {
+  //write DeviceName
+
+  let usbName = keyboardName.toUpperCase()
+  //console.log(usbName)
+  usbName = usbName.replace(/[`~!@#$%^&*()|+=?;:'\ ",.<>\{\}\[\]\\\/]/gi, "")
+  console.log('writing device usb name', 'usb Name:', usbName )
+  fs.writeFile(currentKeyboard.path + '/DeviceName', usbName)
+  console.log('Device name written successfully\n')
 }
 
 const flashFileToKB = ({ fileName, overwrite, fileContents }) => {
