@@ -8,7 +8,19 @@ import { codepy } from './pythontemplates/code'
 import { bootpy } from './pythontemplates/boot'
 import { pog_serialpy } from './pythontemplates/pog_serial'
 import { keymappy } from './pythontemplates/keymap'
+<<<<<<< HEAD
+import {
+  connectedKeyboardPort,
+  pogconfigbuffer,
+  writeKeymapViaSerial,
+  writePogConfViaSerial
+} from './index'
+
+
+// save code.py based on pog.json
+=======
 import { writePogConfViaSerial } from './index'
+>>>>>>> origin/main
 
 export const saveConfiguration = (data: string) => {
   const { pogConfig, serial, writeFirmware } = JSON.parse(data)
